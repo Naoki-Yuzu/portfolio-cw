@@ -1,4 +1,5 @@
 import { useMediaQuery } from 'react-responsive';
+import { useState, useEffect } from 'react'
 import Image from 'next/image';
 import styled from 'styled-components';
 
@@ -61,7 +62,7 @@ const NavItemLink = styled.a`
   }
 `;
 
-const SideMenuButton = styled.button`
+const SideMenuButton = styled.div`
   align-items: center;
   background-color: forestgreen;
   border-radius: 50%;
@@ -76,7 +77,7 @@ const SideMenuButton = styled.button`
   right: 20px;
 `;
 
-const SideMenuButtonDesign = styled.div`
+const SideMenuButtonDesign = styled.span`
   border-radius: 50%;
   background-color: white;
   height: 5px;
@@ -85,8 +86,20 @@ const SideMenuButtonDesign = styled.div`
   width: 5px;
 `;
 
+export const useClient = () => {
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    if (typeof window !== 'undefined')
+      setIsClient(true)
+  }, [])
+
+  return isClient
+}
+
 export default function Header() {
-  const isMobileDesign = useMediaQuery({query: '(max-width: 1050px)'})
+    const isMobileDesign = useMediaQuery({query: '(max-width: 1050px)'});
+    const isClient = useClient();
 
   return (
     <HeaderDiv>
@@ -94,22 +107,22 @@ export default function Header() {
         <Image src="/images/logo_forest.svg" width="40" height="40"/>
         <HeaderTitle>Takachiho Company</HeaderTitle>
       </ImageAndTitleContainer>
-      {isMobileDesign ? (
+      {isClient && isMobileDesign ? (
         <SideMenuButton>
-          <SideMenuButtonDesign />
-          <SideMenuButtonDesign />
-          <SideMenuButtonDesign />
-        </SideMenuButton> ) 
-        : (
-        <Navbar>
-          <NavItem><NavItemLink>COMPANY</NavItemLink></NavItem>
-          <NavItem><NavItemLink>BUSINESS</NavItemLink></NavItem>
-          <NavItem><NavItemLink>SERVICE</NavItemLink></NavItem>
-          <NavItem><NavItemLink>CASE</NavItemLink></NavItem>
-          <NavItem><NavItemLink>RECRUIT</NavItemLink></NavItem>
-          <NavItem><NavItemLink>NEWS</NavItemLink></NavItem>
-          <NavItem><NavItemLink>CONTACT</NavItemLink></NavItem>
-        </Navbar>
+        <SideMenuButtonDesign />
+        <SideMenuButtonDesign />
+        <SideMenuButtonDesign />
+      </SideMenuButton> ) 
+      : (
+      <Navbar>
+        <NavItem><NavItemLink>COMPANY</NavItemLink></NavItem>
+        <NavItem><NavItemLink>BUSINESS</NavItemLink></NavItem>
+        <NavItem><NavItemLink>SERVICE</NavItemLink></NavItem>
+        <NavItem><NavItemLink>CASE</NavItemLink></NavItem>
+        <NavItem><NavItemLink>RECRUIT</NavItemLink></NavItem>
+        <NavItem><NavItemLink>NEWS</NavItemLink></NavItem>
+        <NavItem><NavItemLink>CONTACT</NavItemLink></NavItem>
+      </Navbar>
       )}
     </HeaderDiv>
   );
