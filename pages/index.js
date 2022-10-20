@@ -1,7 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Button from '@mui/material/Button';
+import styled from 'styled-components';
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
 
 export default function Home() {
   return (
@@ -13,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Button variant="contained">Hello World</Button>
+        <Title>Hell World</Title>
 
 
 {/* 
