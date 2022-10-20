@@ -102,13 +102,13 @@ export default function Header() {
         </SideMenuButton> ) 
         : (
         <Navbar>
-            <NavItem><NavItemLink>COMPANY</NavItemLink></NavItem>
-            <NavItem><NavItemLink>BUSINESS</NavItemLink></NavItem>
-            <NavItem><NavItemLink>SERVICE</NavItemLink></NavItem>
-            <NavItem><NavItemLink>CASE</NavItemLink></NavItem>
-            <NavItem><NavItemLink>RECRUIT</NavItemLink></NavItem>
-            <NavItem><NavItemLink>NEWS</NavItemLink></NavItem>
-            <NavItem><NavItemLink>CONTACT</NavItemLink></NavItem>
+          <NavItem><NavItemLink>COMPANY</NavItemLink></NavItem>
+          <NavItem><NavItemLink>BUSINESS</NavItemLink></NavItem>
+          <NavItem><NavItemLink>SERVICE</NavItemLink></NavItem>
+          <NavItem><NavItemLink>CASE</NavItemLink></NavItem>
+          <NavItem><NavItemLink>RECRUIT</NavItemLink></NavItem>
+          <NavItem><NavItemLink>NEWS</NavItemLink></NavItem>
+          <NavItem><NavItemLink>CONTACT</NavItemLink></NavItem>
         </Navbar>
       )}
     </HeaderDiv>
