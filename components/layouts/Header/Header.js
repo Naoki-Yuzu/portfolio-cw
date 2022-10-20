@@ -1,86 +1,116 @@
-import { styled, Box } from '@mui/system';
-import { useMediaQuery, Stack } from "@mui/material";
+import { useMediaQuery } from 'react-responsive';
 import Image from 'next/image';
+import styled from 'styled-components';
 
-const HeaderDiv = styled(Box)({
-  alignItems: "center",
-  display: "flex",
-  height: 90,
-  paddingLeft: 8
-});
+const ImageAndTitleContainer = styled.div`
+  align-items: center;
+  display: flex;
+  margin-left: 8px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
-const HeaderTitle = styled(Box)({
-  color: "rgb(34,139,34)",
-  fontFamily: "Times",
-  marginLeft: 8
-});
+const HeaderDiv = styled.div`
+  align-items: center;
+  display: flex;
+  height: 90px;
+`;
 
-const SideMenuButton = styled("button")({
-  alignItems: "center",
-  backgroundColor: "rgb(34,139,34)",
-  borderRadius: "50%",
-  borderWidth: 0,
-  display: "flex",
-  flexDirection: "column",
-  height: 55,
-  justifyContent: "center",
-  // marginLeft: "auto",
-  // marginRight: 20,
-  minWidth: 55,
-  padding: 0,
-  position: "fixed",
-  right: 20
-});
+const HeaderTitle = styled.h2`
+  color: forestgreen;
+  font-family: Times;
+  font-size: large;
+  font-weight: bold;
+  margin-left: 8px;
+`;
 
-const SideMenuButtonDesign = styled("div")({
-  borderRadius: "50%",
-  backgroundColor: "white",
-  height: 5,
-  marginBottom: 2,
-  marginTop: 2,
-  width: 5
-});
+const Navbar = styled.ul`
+  display: flex;
+  margin-left: auto;
+  margin-right: 50px;
+  gap: 40px;
+`;
 
-const Navbar = styled(Stack)({
-  marginLeft: "auto",
-  marginRight: 50,
-  gap: 40,
-});
+const NavItem = styled.li`
+  color: seagreen;
+  font-family: Times;
+  font-weight: bold;
+`;
 
-const NavItem = styled(Box)({
-  color: "rgb(20,168,59)",
-  fontFamily: "Times",
-  fontWeight: "bold"
-});
+const NavItemLink = styled.a`
+  position: relative;
+  &::after {
+    content: '';
+    background: darkslategray;
+    bottom: -4px;
+    height: 1px;
+    left: 0px;
+    position: absolute;
+    transform: scale(0, 1);
+    transform-origin: left top;
+    transition: transform .3s;
+    width: 100%;
+  }
+  &:hover {
+    color: darkslategray;
+    cursor: pointer;
+  }
+  &:hover::after {
+    transform: scale(1, 1);
+  }
+`;
 
+const SideMenuButton = styled.button`
+  align-items: center;
+  background-color: forestgreen;
+  border-radius: 50%;
+  border-width: 0px;
+  display: flex;
+  flex-direction: column;
+  height: 55px;
+  justify-content: center;
+  min-width: 55px;
+  padding: 0px;
+  position: fixed;
+  right: 20px;
+`;
+
+const SideMenuButtonDesign = styled.div`
+  border-radius: 50%;
+  background-color: white;
+  height: 5px;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  width: 5px;
+`;
 
 export default function Header() {
-
-  const mobileDesign = useMediaQuery("(max-width:1050px)");
+  const isMobileDesign = useMediaQuery({query: '(max-width: 1050px)'})
 
   return (
-    <HeaderDiv component="div">
-      <Image src="/images/logo_forest.svg" width="40" height="40"/>
-      <HeaderTitle component="h3">Takachiho Company</HeaderTitle>
-      {mobileDesign ? (
+    <HeaderDiv>
+      <ImageAndTitleContainer>
+        <Image src="/images/logo_forest.svg" width="40" height="40"/>
+        <HeaderTitle>Takachiho Company</HeaderTitle>
+      </ImageAndTitleContainer>
+      {isMobileDesign ? (
         <SideMenuButton>
           <SideMenuButtonDesign />
           <SideMenuButtonDesign />
           <SideMenuButtonDesign />
         </SideMenuButton> ) 
         : (
-        <Navbar direction="row">
-            <NavItem>COMPANY</NavItem>
-            <NavItem>BUSINESS</NavItem>
-            <NavItem>SERVICE</NavItem>
-            <NavItem>CASE</NavItem>
-            <NavItem>RECRUIT</NavItem>
-            <NavItem>NEWS</NavItem>
-            <NavItem>CONTACT</NavItem>
+        <Navbar>
+            <NavItem><NavItemLink>COMPANY</NavItemLink></NavItem>
+            <NavItem><NavItemLink>BUSINESS</NavItemLink></NavItem>
+            <NavItem><NavItemLink>SERVICE</NavItemLink></NavItem>
+            <NavItem><NavItemLink>CASE</NavItemLink></NavItem>
+            <NavItem><NavItemLink>RECRUIT</NavItemLink></NavItem>
+            <NavItem><NavItemLink>NEWS</NavItemLink></NavItem>
+            <NavItem><NavItemLink>CONTACT</NavItemLink></NavItem>
         </Navbar>
-
       )}
-      
     </HeaderDiv>
   );
 }

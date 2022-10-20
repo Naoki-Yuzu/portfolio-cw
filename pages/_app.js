@@ -5,7 +5,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components'
 // import theme from '../styles/theme';
 import Layout from '../components/layout';
-// import '../styles/globals.css';
+import '../styles/reset.css';
 
 // const clientSideEmotionCache = createEmotionCache();
 
