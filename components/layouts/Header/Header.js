@@ -75,6 +75,7 @@ const SideMenuButton = styled.div`
   padding: 0px;
   position: fixed;
   right: 20px;
+  z-index: 99;
 `;
 
 const SideMenuButtonDesign = styled.span`
