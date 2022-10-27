@@ -9,14 +9,43 @@ import ImageRecruitment from '../public/images/image_recruitment.jpg';
 import ImageCompany from '../public/images/image_company.jpg';
 import ImageBusiness from '../public/images/image_business.jpg';
 import ImageService from '../public/images/image_service.jpg';
+import { Cursor, useTypewriter } from 'react-simple-typewriter';
 
 // Animation Section
 
 const AnimationSection = styled.section`
-  background-color: #659165;
-  height: 550px;
-  margin-bottom: 74px;
   width: 100%;
+`;
+
+const AnimationTextContainer = styled.div`
+  @media (max-width: 770px) {
+    padding: 0px 30px 72px;
+  }
+  padding: 0px 20%;
+`;
+
+const AnimationStaticText = styled.p`
+  @media (max-width: 770px) {
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+  color: forestgreen;
+  font-family: "ヒラギノ明朝 ProN W3", 游ゴシック ,sans-serif ;
+  font-size: 16px;
+  margin-bottom: 30px;
+`; 
+
+const AnimationTypingText = styled.p`
+  @media (max-width: 770px) {
+    font-size: 40px;
+    line-height: 1.75;
+    min-height: 280px;
+  }
+  color: forestgreen;
+  font-family: "ヒラギノ明朝 ProN W3", 游ゴシック ,sans-serif ;
+  font-size: 50px;
+  font-weight: 500;
+  min-height: 116px;
 `;
 
 // Company Section
@@ -408,6 +437,11 @@ export default function Home() {
   const isMobileDesign = useMediaQuery({query: '(max-width: 1050px)'});
   const isClient = useClient();
 
+  const [text] = useTypewriter({
+    words: ["Communicate Fascination Of Takachiho From Miyazaki."],
+    typeSpeed: 130,
+  });
+
   return (
     <>
       <Head>
@@ -450,7 +484,14 @@ export default function Home() {
           </Container>
         </CompanySection>
         <AnimationSection>
-
+          <AnimationTextContainer>
+            <AnimationStaticText>
+              宮崎から、高千穂の魅力を伝える。
+            </AnimationStaticText>
+            <AnimationTypingText>
+              {text}<Cursor />
+            </AnimationTypingText>
+          </AnimationTextContainer>
         </AnimationSection>
         <EventSection>
           <EventTitle>EVENT</EventTitle>
