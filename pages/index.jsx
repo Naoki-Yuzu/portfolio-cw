@@ -1,27 +1,43 @@
 import Image from 'next/image'
 import Head from 'next/head'
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { useMediaQuery } from 'react-responsive';
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { Cursor, useTypewriter } from 'react-simple-typewriter';
 import ImageTakachiho1 from '../public/images/image_takachiho_01.jpg';
 import ImageTakachiho2 from '../public/images/image_takachiho_02.jpg';
 import ImageRecruitment from '../public/images/image_recruitment.jpg';
 import ImageCompany from '../public/images/image_company.jpg';
 import ImageBusiness from '../public/images/image_business.jpg';
 import ImageService from '../public/images/image_service.jpg';
-import { Cursor, useTypewriter } from 'react-simple-typewriter';
+import ImageFlower1 from '../public/images/image_flower_01.jpg';
+import ImageFlower2 from '../public/images/image_flower_02.jpg';
+import ImageFlower3 from '../public/images/image_flower_03.jpg';
+import ImageFlower4 from '../public/images/image_flower_04.jpg';
+import ImageFlower5 from '../public/images/image_flower_05.jpg';
 
 // Animation Section
 
-const AnimationSection = styled.section`
-  width: 100%;
+const animationAutoSlide = keyframes`
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 `;
 
-const AnimationTextContainer = styled.div`
-  @media (max-width: 770px) {
-    padding: 0px 30px 72px;
+const animationAutoSlideDelay = keyframes`
+  0% {
+    transform: translateX(0);
   }
-  padding: 0px 20%;
+  100% {
+    transform: translateX(-200%);
+  }
+`;
+
+const AnimationSection = styled.section`
+  width: 100%;
 `;
 
 const AnimationStaticText = styled.p`
@@ -35,6 +51,55 @@ const AnimationStaticText = styled.p`
   margin-bottom: 30px;
 `; 
 
+const AnimationSliderContainer = styled.div`
+  @media (max-width: 770px) {
+  }
+  display: flex;
+  overflow: hidden;
+`;
+
+const AnimationSliderFirstList = styled.ul`
+  @media (max-width: 770px) {
+    height: 200px;
+  }
+  align-items: center;
+  animation: ${animationAutoSlide} 30s -15s linear infinite;
+  display: flex;
+  height: 400px;
+`;
+
+const AnimationSliderImage = styled.img`
+  @media (max-width: 770px) {
+    height: 150px;
+    width: 150px;
+  }
+  height: 300px;
+  width: 300px;
+  object-fit: cover;
+`;
+
+const AnimationSliderItems = styled.li`
+`;
+
+const AnimationSliderSecondList = styled.ul`
+  @media (max-width: 770px) {
+    height: 200px;
+  }
+  align-items: center;
+  animation: ${animationAutoSlideDelay} 30s linear infinite;
+  display: flex;
+  height: 400px;
+`;
+
+const AnimationTextContainer = styled.div`
+  @media (max-width: 770px) {
+    margin-top: 38px;
+    padding: 0px 30px 72px;
+  }
+  margin-top: 50px;
+  padding: 0px 20% 150px;
+`;
+
 const AnimationTypingText = styled.p`
   @media (max-width: 770px) {
     font-size: 40px;
@@ -47,6 +112,7 @@ const AnimationTypingText = styled.p`
   font-weight: 500;
   min-height: 116px;
 `;
+
 
 // Company Section
 
@@ -160,11 +226,6 @@ const EventSubTitle = styled.p`
   text-align: center;
 `;
 
-// const IconImage = styled.img`
-//   height: 100px;
-//   width: 100px;
-// `;
-
 const ImageContainer = styled.div`
   min-height: 316px;
   min-width: 316px;
@@ -195,7 +256,6 @@ const NavItem = styled.li`
   position: relative;
   width: 48%;
 `;
-
 
 const NavItemIcon = styled.div`
   background-color: white;
@@ -442,6 +502,19 @@ export default function Home() {
     typeSpeed: 130,
   });
 
+  const images = [
+    ImageFlower1.src,
+    ImageFlower2.src,
+    ImageFlower3.src,
+    ImageFlower4.src,
+    ImageFlower5.src,
+    ImageFlower1.src,
+    ImageFlower2.src,
+    ImageFlower3.src,
+    ImageFlower4.src,
+    ImageFlower5.src,
+  ];
+
   return (
     <>
       <Head>
@@ -484,6 +557,26 @@ export default function Home() {
           </Container>
         </CompanySection>
         <AnimationSection>
+          <AnimationSliderContainer>
+            <AnimationSliderFirstList>
+              {images.map(image => {
+                return (
+                  <AnimationSliderItems key={image}>
+                    <AnimationSliderImage src={image} />
+                  </AnimationSliderItems>
+                );
+              })}
+            </AnimationSliderFirstList>
+            <AnimationSliderSecondList>
+              {images.map(image => {
+                return (      
+                  <AnimationSliderItems key={image}>
+                    <AnimationSliderImage src={image} />
+                  </AnimationSliderItems>
+                );
+              })}
+            </AnimationSliderSecondList>
+          </AnimationSliderContainer>
           <AnimationTextContainer>
             <AnimationStaticText>
               宮崎から、高千穂の魅力を伝える。
