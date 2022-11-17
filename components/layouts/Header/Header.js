@@ -2,6 +2,7 @@ import { useMediaQuery } from 'react-responsive';
 import { useState, useEffect } from 'react'
 import Image from 'next/image';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const ImageAndTitleContainer = styled.div`
   align-items: center;
@@ -104,10 +105,12 @@ export default function Header() {
 
   return (
     <HeaderDiv>
-      <ImageAndTitleContainer>
-        <Image src="/images/logo_forest.svg" width="40" height="40"/>
-        <HeaderTitle>Takachiho Company</HeaderTitle>
-      </ImageAndTitleContainer>
+      <Link href="/">
+        <ImageAndTitleContainer>
+          <Image src="/images/logo_forest.svg" width="40" height="40"/>
+          <HeaderTitle>Takachiho Company</HeaderTitle>
+        </ImageAndTitleContainer>
+      </Link>
       {isClient && isMobileDesign ? (
         <SideMenuButton>
         <SideMenuButtonDesign />
@@ -116,7 +119,7 @@ export default function Header() {
       </SideMenuButton> ) 
       : (
       <Navbar>
-        <NavItem><NavItemLink>COMPANY</NavItemLink></NavItem>
+        <NavItem><NavItemLink href="/company">COMPANY</NavItemLink></NavItem>
         <NavItem><NavItemLink>BUSINESS</NavItemLink></NavItem>
         <NavItem><NavItemLink>SERVICE</NavItemLink></NavItem>
         <NavItem><NavItemLink>CASE</NavItemLink></NavItem>
